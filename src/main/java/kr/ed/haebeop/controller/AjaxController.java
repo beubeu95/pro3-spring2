@@ -17,7 +17,7 @@ import java.util.List;
 public class AjaxController {
 
     @Autowired
-    private TestService testService;
+    private TestService testService3;
 
     @GetMapping("/")
     public String ajaxHome() { return "/ajax/home"; }
@@ -105,8 +105,8 @@ public class AjaxController {
     @ResponseBody
     public List<TestVO> ajaxTest8Pro(@RequestBody TestVO test) throws Exception {
         System.out.println(test.toString());
-        testService.testInsert(test);
-        List<TestVO> tList = testService.testList();
+        testService3.testInsert(test);
+        List<TestVO> tList = testService3.testList();
         return tList;
     }
 
@@ -128,8 +128,8 @@ public class AjaxController {
 
     @PostMapping("/test10pro")
     public ResponseEntity ajaxTest10Pro(@RequestBody TestVO test) throws Exception {
-        testService.testInsert(test);
-        List<TestVO> tList = testService.testList();
+        testService3.testInsert(test);
+        List<TestVO> tList = testService3.testList();
         return new ResponseEntity<>(tList, HttpStatus.OK);
     }
 }

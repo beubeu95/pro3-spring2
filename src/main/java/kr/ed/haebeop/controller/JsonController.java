@@ -12,13 +12,13 @@ import org.springframework.web.bind.annotation.*;
 public class JsonController {
 
     @Autowired
-    private TestService testService;
+    private TestService testService3;
 
     //GET
     @GetMapping("getTest/{num}")
     @ResponseBody
     public TestVO viewTest(@PathVariable int num) throws Exception {
-        TestVO test = testService.getTest(num);
+        TestVO test = testService3.getTest(num);
         return test;
     }
 
@@ -31,7 +31,7 @@ public class JsonController {
     @PostMapping("insertForm")
     @ResponseBody //@ModelAttribute TestVO test = 일반 객체로 받아오기
     public TestVO insertPro(@ModelAttribute TestVO test) throws Exception{
-        testService.testInsert(test);
+        testService3.testInsert(test);
         return test;        //@RequestParam("num") int num, @RequestParam("title") int title
     }
 
@@ -44,7 +44,7 @@ public class JsonController {
     @PostMapping("insertForm2")
     @ResponseBody //@RequestBody = json객체으로 값 받아오기
     public TestVO insertPro2(@RequestBody TestVO test) throws Exception{
-        testService.testInsert(test);
+        testService3.testInsert(test);
         return test;
     }
 }

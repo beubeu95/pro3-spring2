@@ -15,6 +15,7 @@
     <resources mapping="/admin/**" location="/WEB-INF/views/admin" />
     <resources mapping="/board/**" location="/WEB-INF/views/board" />
     <resources mapping="/check/**" location="/WEB-INF/views/check" />
+    <resources mapping="/fileupload/**" location="/WEB-INF/views/fileupload" />
     <resources mapping="/guestbook/**" location="/WEB-INF/views/guestbook" />
     <resources mapping="/free/**" location="/WEB-INF/views/free" />
     <resources mapping="/qna/**" location="/WEB-INF/views/qna" />
@@ -48,7 +49,7 @@
 
     <!-- 멀티파트 업로드 디렉토리 지정 -->
     <beans:bean id="uploadPath" class="java.lang.String">
-        <beans:constructor-arg value="D:\kim\springStudy\study2\src\main\webapp\resources\upload" />
+        <beans:constructor-arg value="D:\hk\study5\src\main\webapp\resources\upload" />
     </beans:bean>
 
     <!-- 기본 메인 패키지 및 컨트롤러 패키지 설정 -->
@@ -73,6 +74,19 @@
             <beans:ref bean="sampleIntercepter" />
         </interceptor>
     </interceptors>
+    <interceptors>
+        <beans:bean class= "org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+            <beans:property name="paramName" value="language"/>
+        </beans:bean>
+    </interceptors>
+    <beans:bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
+        <beans:property name="defaultLocale" value="ko"/>
+    </beans:bean>
+    <beans:bean id= "messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+        <beans:property name="basename" value="messages"/><!-- resources/messages_ko.properties -->
+        <beans:property name="defaultEncoding" value="UTF-8" /><!-- resources/messages_en.properties -->
+    </beans:bean>
+
     <!-- free 디렉토리의 view(.jsp)를 접근하려면 UserInterceptor 클래스에
     제시한 조건이 맞으면 접근 가능하게 할 수 있도록 함 -->
     <!-- admin 디렉토리의 view(.jsp)를 접근하려면 AdminInterceptor 클래스에
